@@ -73,7 +73,7 @@ int main(int argc, char *argv[])
     int thresholdValueOld = -1;
 
     //read color image
-    cv::Mat img = cv::imread("../data/lena.tiff");
+    cv::Mat img = cv::imread("D:\\projects\\imageProcessing\\02_threshold\\data\\lena.tiff");
 
     //display color image
     cv::imshow("Image", img);
