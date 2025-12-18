@@ -27,7 +27,22 @@ void threshold_loop(const cv::Mat &input, cv::Mat &output, int threshold)
     
     ///////////////////////////////
     // insert your code here ... 
-    //////////////////////////////  
+    //////////////////////////////
+    for (int r = 0; r < rows; r++)
+    {
+        for (int c = 0; c < cols; c++)
+        {
+            uchar pixelValue = input.at<uchar>(r, c);
+            if (pixelValue >= threshold)
+            {
+                output.at<uchar>(r, c) = 255;
+            }
+            else
+            {
+                output.at<uchar>(r, c) = 0;
+            }
+        }
+    }  
 
 }
 
@@ -45,7 +60,31 @@ void threshold_loop_ptr(const cv::Mat &input, cv::Mat &output, int threshold)
     ///////////////////////////////
     // insert your code here ... 
     //////////////////////////////
-    
+    if (input.isContinuous())
+    {
+        cols = cols * rows;
+        rows = 1;
+    }
+
+    for (int r = 0; r < rows; r++)
+    {
+        const uchar* inputPtr = input.ptr<uchar>(r);
+        uchar* outputPtr = output.ptr<uchar>(r);
+        
+        for (int c = 0; c < cols; c++)
+        {
+            uchar pixelValue = inputPtr[c];
+            if (pixelValue >= threshold)
+            {
+                outputPtr[c] = 255;
+            }
+            else
+            {
+                outputPtr[c] = 0;
+            }
+        }
+    }
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -61,6 +100,33 @@ void threshold_loop_ptr2(const cv::Mat &input, cv::Mat &output, int threshold)
     ///////////////////////////////
     // insert your code here ... 
     //////////////////////////////
+    if (input.isContinuous())
+    {
+        cols = cols * rows;
+        rows = 1;
+    }
+
+    for (int r = 0; r < rows; r++)
+    {
+        const uchar* inputPtr = input.ptr<uchar>(r);
+        uchar* outputPtr = output.ptr<uchar>(r);
+        
+        for (int c = 0; c < cols; c++)
+        {
+            uchar pixelValue = *inputPtr;
+            if (pixelValue >= threshold)
+            {
+                *outputPtr = 255;
+            }
+            else
+            {
+                *outputPtr = 0;
+            }
+            ++inputPtr;
+            ++outputPtr;
+        }
+    }
+
 
 }
 
