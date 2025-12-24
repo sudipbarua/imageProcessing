@@ -43,6 +43,17 @@ void Histogram::calcHist(const cv::Mat &input, cv::Mat &hist)
     ///////////////////////////////
     // insert your code here ...
     //////////////////////////////
+    for (int r = 0; r < rows; r++)
+    {
+        const uchar* inputPtr = input.ptr<uchar>(r);
+
+        for (int c = 0; c < cols; c++)
+        {
+            uchar pixelValue = inputPtr[c];
+            pHist[pixelValue] += 1.0f;
+        }
+    }
+
 
 }
 
@@ -61,8 +72,25 @@ void Histogram::calcStats(const cv::Mat &hist, uchar &min, uchar &max, uchar &me
     ///////////////////////////////
     // insert your code here ...
     //////////////////////////////
+    min = 0;
+    float sum = 0.0f;
+    float totalPixels = hist.rows * hist.cols;
+    for (int i = 0; i < histSize; i++)
+    {
+        float binValue = hist.at<float>(i);
+        if (binValue > 0)
+        {
+            if (min == 0)
+            {
+                min = i;
+            }
+            max = i;
+            sum += binValue * i;
+        }
+    }
 
-    
+    mean = static_cast<uchar>(sum/totalPixels);
+
 //############################################################
     
     // find maximum

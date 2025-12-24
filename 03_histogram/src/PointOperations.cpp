@@ -24,6 +24,22 @@ void PointOperations::adjustContrast(cv::Mat &input, cv::Mat &output, float alph
     ///////////////////////////////
     // insert your code here ...
     //////////////////////////////
+    for (int r = 0; r < rows; r++)
+    {
+        const uchar* inputPtr = input.ptr<uchar>(r);
+        uchar* outputPtr = output.ptr<uchar>(r);
+
+        for (int c = 0; c < cols; c++)
+        {
+            float newValue = alpha * (static_cast<float>(inputPtr[c]) - static_cast<float>(center)) + static_cast<float>(center);
+            if (newValue < 0.0f)
+                newValue = 0.0f;
+            else if (newValue > 255.0f)
+                newValue = 255.0f;
+
+            outputPtr[c] = static_cast<uchar>(newValue);
+        }
+    }
     
 }
 
@@ -47,6 +63,22 @@ void PointOperations::adjustBrightness(cv::Mat &input, cv::Mat &output, int alph
     ///////////////////////////////
     // insert your code here ...
     //////////////////////////////
+    for (int r = 0; r < rows; r++)
+    {
+        const uchar* inputPtr = input.ptr<uchar>(r);
+        uchar* outputPtr = output.ptr<uchar>(r);
+
+        for (int c = 0; c < cols; c++)
+        {
+            int newValue = static_cast<int>(inputPtr[c]) + alpha;
+            if (newValue < 0)
+                newValue = 0;
+            else if (newValue > 255)
+                newValue = 255;
+
+            outputPtr[c] = static_cast<uchar>(newValue);
+        }
+    }
     
 
 }
@@ -65,6 +97,16 @@ void PointOperations::invert(cv::Mat &input, cv::Mat &output)
     ///////////////////////////////
     // insert your code here ...
     //////////////////////////////
+    for (int r = 0; r < rows; r++)
+    {
+        const uchar* inputPtr = input.ptr<uchar>(r);
+        uchar* outputPtr = output.ptr<uchar>(r);
+
+        for (int c = 0; c < cols; c++)
+        {
+            outputPtr[c] = 255 - inputPtr[c];
+        }
+    }
     
 }
 
@@ -83,4 +125,18 @@ void PointOperations::quantize(cv::Mat &input, cv::Mat &output, uchar n)
     ///////////////////////////////
     // insert your code here ...
     //////////////////////////////
+    uchar bins = pow(2, n);
+    for (int r = 0; r < rows; r++)
+    {
+        const uchar* inputPtr = input.ptr<uchar>(r);
+        uchar* outputPtr = output.ptr<uchar>(r);
+
+        for (int c = 0; c < cols; c++)
+        {
+            uchar pixelValue = inputPtr[c];
+            uchar j = pixelValue * (bins / 256);
+            uchar quantizedValue = (j + 0.5f) * (256 / bins);  // midpoint of the bin
+            outputPtr[c] = quantizedValue;
+        }
+    }
 }

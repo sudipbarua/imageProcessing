@@ -150,8 +150,9 @@ int main(int argc, char *argv[]) {
         histogram->show("Histogram", imgHist);
 
         // calculate and display histogram with OpenCV function
-        // histogram->calcHist_cv(imgOutput, imgHist);
-        // histogram->show("histogram_grayscale_cv", imgHist);
+        cv::Mat imgHistCV;
+        histogram->calcHist_cv(imgOutput, imgHistCV);
+        histogram->show("CV_histogram_grayscale", imgHistCV);
 
         // calculate minimum, maximum and mean
         uchar min, max, mean;

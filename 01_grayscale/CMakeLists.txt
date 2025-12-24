@@ -16,7 +16,7 @@ elseif(CMAKE_COMPILER_IS_GNUCXX)
 endif()
 
 # input image selection
-set(InputImage_DIR ../lena.tiff CACHE FILEPATH "Input image file")
+set(InputImage_DIR data/lena.tiff CACHE FILEPATH "Input image file")
 add_definitions(-DINPUTIMAGE=\"${InputImage_DIR}\")
 
 set(CMAKE_CXX_STANDARD 11)
