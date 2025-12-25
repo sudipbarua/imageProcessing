@@ -38,6 +38,7 @@ cmake -G "Visual Studio 17 2022" ..
         - `CMakeLists.txt` (example-specific cmake)
         - `main.cpp` (entry point: demonstrates grayscale conversion)
         - `Timer.h` (utility header)
+    - [`README.md`](01_grayscale/README.md)
 
 - **02_threshold/**
     - `build/` (CMake build output)
@@ -46,6 +47,7 @@ cmake -G "Visual Studio 17 2022" ..
         - `CMakeLists.txt`
         - `main.cpp` (thresholding examples)
         - `Timer.h`
+    - [`README.md`](02_threshold/README.md)
 
 - **03_histogram/**
     - `build/`
@@ -57,6 +59,7 @@ cmake -G "Visual Studio 17 2022" ..
         - `Threshold.cpp` / `Threshold.h`
         - `main.cpp`
         - `Timer.h`
+    - [`README.md`](03_histogram/README.md)
 
 - **04_spatial_filter/**
     - `build/`
@@ -66,20 +69,25 @@ cmake -G "Visual Studio 17 2022" ..
         - `imshow_multiple.h` (helper to show multiple images)
         - `main.cpp`
         - `Timer.h`
+    - [`README.md`](04_spatial_filter/README.md)
 
 - **05_segmentation1_template_matching/**
-    - `build/`, `data/`, `src/` with `main.cpp`, `Segmentation.cpp`, `Segmentation.h` (template matching)
+    - `build/`, `data/`, 
+    - `src/` with `main.cpp`, `Segmentation.cpp`, `Segmentation.h` (template matching)
+    - [`README.md`](05_segmentation1_template_matching/README.md)
 
 - **05_segmentation2_hough/**
-    - `build/`, `data/`, `src/` with `main.cpp`, `Segmentation.cpp`, `Segmentation.h` (Hough methods)
+    - `build/`, `data/`, 
+    - `src/` with `main.cpp`, `Segmentation.cpp`, `Segmentation.h` (Hough methods)
+    - [`README.md`](05_segmentation2_hough/README.md)
 
-- **6_Morphology/**
-    - `06_morphology_solution/` (solution folder)
-        - `build/`, `data/`, `src/` includes `Morphology.cpp` / `Morphology.h`, `main.cpp`, helpers
+- **06_Morphology/**
+    - `build/`, `data/`, `src/` includes `Morphology.cpp` / `Morphology.h`, `main.cpp`, helpers
+    - [`README.md`](06_Morphology/README.md)
 
-- **7_DCT/**
-    - `07_dct/` and `07_dct_solution/` (source and solution)
-        - `src/` contains `Dct.cpp` / `Dct.h`, `main.cpp`
+- **07_DCT/**
+    - `src/` contains `Dct.cpp` / `Dct.h`, `main.cpp`
+    - [`README.md`](07_DCT/README.md)
 
 **Notes about build scripts and linking**
 - The per-example `src/CMakeLists.txt` files reference OpenCV targets and components. Ensure OpenCV is installed and CMake can find it (e.g., set `OpenCV_DIR` or install OpenCV system-wide).
