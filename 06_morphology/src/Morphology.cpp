@@ -65,45 +65,17 @@ void Morphology::dilate(const cv::Mat &input, cv::Mat &output, const cv::Mat &ke
     int rows = input.rows;
     int cols = input.cols;
 
-    int kRows = kernel.rows;
-    int kCols = kernel.cols;
-
-    int refPointX = (kCols - 1) / 2; 
-    int refPointY = (kRows - 1) / 2;
-
     output.release();
     output = cv::Mat::zeros(rows, cols, CV_8U);
 
-    for (int r = 0; r < rows - kRows; ++r)
-    {
-        uchar *pOutput = output.ptr<uchar>(r + refPointY) + refPointX;
 
-        for (int c = 0; c < cols - kCols; ++c)
-        {
-            bool found = false;
 
-            for (int kr = 0; kr < kRows; ++kr)
-            {
-                const uchar *pInput = input.ptr<uchar>(r + kr) + c;
-                const uchar *pKernel = kernel.ptr<uchar>(kr);
+    ///////////////////////////////
+    // insert your code here ...
+    //////////////////////////////
 
-                for (int kc = 0; kc < kCols; ++kc)
-                {
-                    if (*pKernel > 0 && *pInput > 0)
-                    {
-                        found = true;
-                        break;
-                    }
-                    ++pKernel;
-                    ++pInput;
-                }
-                if (found)
-                    break;
-            }
-            *pOutput = found ? 255 : 0;
-            pOutput++;
-        }
-    }
+
+
 }
 
 void Morphology::erode(const cv::Mat &input, cv::Mat &output, const cv::Mat &kernel)
@@ -117,45 +89,17 @@ void Morphology::erode(const cv::Mat &input, cv::Mat &output, const cv::Mat &ker
     int rows = input.rows;
     int cols = input.cols;
 
-    int kRows = kernel.rows;
-    int kCols = kernel.cols;
-
-    int refPointX = (kCols - 1) / 2; 
-    int refPointY = (kRows - 1) / 2;
-
     output.release();
     output = cv::Mat::zeros(rows, cols, CV_8U);
 
-    for (int r = 0; r < rows - kRows; ++r)
-    {
-        uchar *pOutput = output.ptr<uchar>(r + refPointY) + refPointX;
 
-        for (int c = 0; c < cols - kCols; ++c)
-        {
-            bool found = false;
 
-            for (int kr = 0; kr < kRows; ++kr)
-            {
-                const uchar *pInput = input.ptr<uchar>(r + kr) + c;
-                const uchar *pKernel = kernel.ptr<uchar>(kr);
+    ///////////////////////////////
+    // insert your code here ...
+    //////////////////////////////
 
-                for (int kc = 0; kc < kCols; ++kc)
-                {
-                    if (*pKernel > 0 && *pInput == 0)
-                    {
-                        found = true;
-                        break;
-                    }
-                    ++pKernel;
-                    ++pInput;
-                }
-                if (found)
-                    break;
-            }
-            *pOutput = found ? 0 : 255;
-            pOutput++;
-        }
-    }
+
+
 }
 
 void Morphology::subtract(const cv::Mat &input, cv::Mat &output, const cv::Mat &subtract)
@@ -178,22 +122,12 @@ void Morphology::subtract(const cv::Mat &input, cv::Mat &output, const cv::Mat &
     output.release();
     output = cv::Mat::zeros(rows, cols, CV_8U);
 
-    if (input.isContinuous() && output.isContinuous() && subtract.isContinuous())
-    {
-        cols = rows * cols;
-        rows = 1;
-    }
 
-    for (int r = 0; r < rows; ++r)
-    {
-        uchar *pOutput = output.ptr<uchar>(r);
-        const uchar *pInput = input.ptr<uchar>(r);
-        const uchar *pSubtract = subtract.ptr<uchar>(r);
 
-        for (int c = 0; c < cols; ++c)
-        {
-            int value = *pInput++ - *pSubtract++;
-            *pOutput++ = value > 0 ? value : 0;
-        }
-    }
+    ///////////////////////////////
+    // insert your code here ...
+    //////////////////////////////
+
+
+
 }
